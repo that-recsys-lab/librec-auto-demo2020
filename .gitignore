@@ -1,0 +1,8 @@
+
+.DS_Store
+
+demo01/exp[0-9]*/*
+Results/**
+data/split/**
+
+
