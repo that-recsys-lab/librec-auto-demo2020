@@ -5,17 +5,11 @@
 <librec-auto>
 	<random-seed>202001</random-seed>
 	<thread-count>1</thread-count>
-	
-	<!-- PATH SECTION -->
-	<path>
-		<data absolute="true">/Users/robinburke/Documents/GitHub/librec-auto-demo2020/data</data>
-		<data>../data</data>
-		<result>result</result>
-		<log>log</log>
-	</path>
+	<library src="system">default-algorithms.xml</library>
 	
 	<!-- DATA SECTION -->
 	<data>
+		<data>../data</data>
 		<format>UIR</format>
 		<data-file format="text">ratings.csv</data-file>
 	</data>
@@ -30,19 +24,12 @@
 	
 	<!-- ALGORITHM SECTION -->
 	<!-- Using biased matrix factorization for demonstration purposes. -->
-	<alg>
-		<class>biasedmf</class> 
-		<learn-rate>0.01</learn-rate>
-		<learn-rate-max>0.01</learn-rate-max>
-		<learn-rate-decay>1.0</learn-rate-decay>
-		<bold-driver>false</bold-driver>
-		<iterator-max>25</iterator-max>
-		<user-reg>
-			<value>0.01</value>
+	<alg ref="alg:biasedmf">
+		<user-reg>0.01</user-reg>
+<!--			<value>0.01</value>
 			<value>0.1</value>
-		</user-reg>
-		<item-reg>0.01</item-reg>
-		<bias-reg>0.01</bias-reg>
+		</user-reg>-->
+		<iterator-max>25</iterator-max>
 		<num-factors>
 			<value>10</value>
 			<value>50</value>
@@ -53,36 +40,38 @@
 	<metric>
 		<ranking>true</ranking>
 		<list-size>10</list-size>
-		<class>ndcg</class>
+		<class>ndcg,precision</class>
 	</metric>
 	
 	<!-- POST-PROCESSING SECTION -->
 	<post>
 		<script lang="python3" src="system">
-			<script-name>result-graphics.py</script-name>
+			<script-name>results_to_csv.py</script-name>
+			<param name="option">all</param>
+		</script> 
+
+		<script lang="python3" src="system">
+			<script-name>result_graphics.py</script-name>
 			<param name="browser">true</param>
 		</script> 
+
 		<script lang="python3" src="system">
-			<script-name>slack-post.py</script-name>
+			<script-name>slack_post.py</script-name>
 			<param name="option">message</param>
 			<param name="channel">la_bot</param>
-			<param name="encrypted_key">/Users/robinburke/Documents/GitHub/librec-auto-demo2020/keys/slack-api.enc</param>
-			<param name="information">Experiment complete</param>
+			<param name="encrypted_key">../keys/slack-api.enc</param>
+			<param name="message">Experiment complete</param>
+			<param name="password"/>
 		</script> 
+
 		<script lang="python3" src="system">
-			<script-name>slack-post.py</script-name>
+			<script-name>slack_post.py</script-name>
 			<param name="option">file</param>
 			<param name="channel">la_bot</param>
 			<param name="encrypted_key">/Users/robinburke/Documents/GitHub/librec-auto-demo2020/keys/slack-api.enc</param>
-			<param name="file">demo01/post/viz-bar-NormalizedDCG.jpg</param>
+			<param name="file">post/viz-bar-NormalizedDCG.jpg</param>
 			<param name="message">NDCG for the experiment</param>
-		</script>
-		<script lang="python3" src="system">
-			<script-name>dropbox-post.py</script-name>
-			<param name="option">file</param>
-			<param name="encrypted_key">/Users/robinburke/Documents/GitHub/librec-auto-demo2020/keys/dropbox-api.enc</param>
-			<param name="path">demo01/post/viz-bar-NormalizedDCG.jpg</param>
-			<param name="dest">/librec-experiments</param>
-		</script>
+			<param name="password"/>
+		</script> 
 	</post> 
 </librec-auto>

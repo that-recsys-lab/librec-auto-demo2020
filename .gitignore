@@ -2,7 +2,10 @@
 .DS_Store
 
 demo01/exp[0-9]*/*
+demo01/Results/**
 Results/**
 data/split/**
+demo01/post/**
 
 
+log/librec.log
