@@ -9,7 +9,7 @@
 	
 	<!-- DATA SECTION -->
 	<data>
-		<data>../data</data>
+		<data-dir>../data</data-dir>
 		<format>UIR</format>
 		<data-file format="text">ratings.csv</data-file>
 	</data>
