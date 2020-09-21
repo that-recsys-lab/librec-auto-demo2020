@@ -3,9 +3,11 @@
 
 demo01/exp[0-9]*/*
 demo01/Results/**
+demo03/exp[0-9]*/*
+demo03/Results/**
+demo03/post/**
 Results/**
 data/split/**
 demo01/post/**
-
 
 log/librec.log

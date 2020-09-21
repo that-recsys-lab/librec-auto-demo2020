@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- Configuration file for RecSys demo  
+	 Part 03: Demonstrating the re-ranker -->
+
+<librec-auto>
+	<random-seed>202001</random-seed>
+	<thread-count>1</thread-count>
+	<library src="system">default-algorithms.xml</library>
+	
+	<!-- DATA SECTION -->
+	<data>
+		<data-dir>../data</data-dir>
+		<format>UIR</format>
+		<data-file format="text">ratings.csv</data-file>
+	</data>
+	
+	<!-- FEATURES SECTION -->
+	<features>
+		<appender-class>net.librec.data.convertor.appender.ItemFeatureAppender</appender-class>
+		<item-feature-file>item-features.csv</item-feature-file>
+	</features>
+	
+	<!-- SPLITTER SECTION -->
+	<splitter>
+		<model count="5">kcv</model>
+		<dim>userfixed</dim>
+		<ratio>0.8</ratio>
+		<save>true</save>
+	</splitter>
+	
+	<!-- ALGORITHM SECTION -->
+	<!-- Using biased matrix factorization for demonstration purposes. -->
+	<alg ref="alg:biasedmf">
+		<user-reg>0.01</user-reg>
+<!--			<value>0.01</value>
+			<value>0.1</value>
+		</user-reg>-->
+		<iterator-max>25</iterator-max>
+		<num-factors>
+			<value>10</value>
+			<value>50</value>
+		</num-factors>
+	</alg> 
+	
+	<!-- RERANK SECTION -->
+	<rerank>
+		<script lang="python3" src="system">
+			<script-name>far-rerank.py</script-name>
+			<param name="max_len">10</param>
+			<param name="lambda">0.4</param>
+			<param name="binary">False</param>
+		</script>
+	</rerank> 
+
+	<!-- METRICS SECTION -->
+	<metric>
+		<ranking>true</ranking>
+		<list-size>10</list-size>
+		<class>ndcg,precision</class>
+		<protected-feature>old</protected-feature>
+	</metric>
+	
+	<!-- POST-PROCESSING SECTION -->
+	<post>
+		<script lang="python3" src="system">
+			<script-name>result_graphics.py</script-name>
+			<param name="browser">true</param>
+		</script> 
+	</post> 
+</librec-auto>
