@@ -22,19 +22,19 @@
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="5">kcv</model>
+		<model count="3">kcv</model>
 		<dim>userfixed</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
 	</splitter>
 	
 	<!-- ALGORITHM SECTION -->
-	<!-- Using item knn for demonstration purposes. -->
-	<alg ref="alg:itemknn">
-		<shrinkage>
-			<value>5</value>
-			<value>10</value>
-		</shrinkage>
+	<!-- Using biased for demonstration purposes. -->
+	<alg ref="alg:biasedmf">
+		<similarity type="item,itemfeatures">pcc,jaccard</similarity>
+		<iterator-max>25</iterator-max>
+		<item-reg><value>0.001</value><value>0.01</value></item-reg>
+		<num-factors>20</num-factors>
 	</alg>
 	
 	<!-- RERANK SECTION -->
@@ -44,7 +44,7 @@
 			<param name="max_len">10</param>
 			<param name="lambda">
 				<value>0.2</value>
-				<value>0.4</value>
+				<value>0.8</value>
 			</param>
 			<param name="binary">False</param>
 		</script>
@@ -55,7 +55,7 @@
 		<ranking>true</ranking>
 		<list-size>50</list-size>
 		<class>ndcg,precision,sp</class>
-		<protected-feature>old</protected-feature>
+		<protected-feature>new</protected-feature>
 	</metric>
 	
 	<!-- POST-PROCESSING SECTION -->

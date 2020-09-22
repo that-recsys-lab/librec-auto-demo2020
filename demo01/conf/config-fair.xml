@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Configuration file for RecSys demo  
-	 Part 01: Demonstrating librec-auto -->
+	 Part 02: Demonstrating the fairness metric -->
 
 <librec-auto>
 	<random-seed>202001</random-seed>
@@ -9,7 +9,7 @@
 	
 	<!-- DATA SECTION -->
 	<data>
-		<data-dir>/Users/robinburke/Documents/GitHub/librec-auto-demo2020/data</data-dir>
+		<data-dir>../data</data-dir>
 		<format>UIR</format>
 		<data-file format="text">ratings.csv</data-file>
 	</data> 
@@ -22,19 +22,19 @@
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="5">kcv</model>
+		<model count="3">kcv</model>
 		<dim>userfixed</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
 	</splitter>
 	
 	<!-- ALGORITHM SECTION -->
-	<!-- Using item knn for demonstration purposes. -->
-	<alg ref="alg:itemknn">
-		<shrinkage>
-			<value>5</value>
-			<value>10</value>
-		</shrinkage>
+	<!-- Using biased for demonstration purposes. -->
+	<alg ref="alg:biasedmf">
+		<similarity type="item,itemfeatures">pcc,jaccard</similarity>
+		<iterator-max>25</iterator-max>
+		<item-reg><value>0.001</value><value>0.01</value><value>0.05</value></item-reg>
+		<num-factors>20</num-factors>
 	</alg>
 
 	<!-- METRICS SECTION -->
@@ -42,7 +42,7 @@
 		<ranking>true</ranking>
 		<list-size>10</list-size>
 		<class>ndcg,precision,sp</class>
-		<protected-feature>old</protected-feature>
+		<protected-feature>new</protected-feature>
 	</metric>
 	
 	<!-- POST-PROCESSING SECTION -->

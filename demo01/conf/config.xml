@@ -16,19 +16,19 @@
 	
 	<!-- SPLITTER SECTION -->
 	<splitter>
-		<model count="5">kcv</model>
+		<model count="3">kcv</model>
 		<dim>userfixed</dim>
 		<ratio>0.8</ratio>
 		<save>true</save>
 	</splitter>
 	
 	<!-- ALGORITHM SECTION -->
-	<!-- Using item knn for demonstration purposes. -->
-	<alg ref="alg:itemknn">
-		<shrinkage>
-			<value>5</value>
-			<value>10</value>
-		</shrinkage>
+	<!-- Using biased for demonstration purposes. -->
+	<alg ref="alg:biasedmf">
+		<similarity type="item">pcc</similarity>
+		<iterator-max>25</iterator-max>
+		<item-reg><value>0.001</value><value>0.01</value><value>0.05</value></item-reg>
+		<num-factors>20</num-factors>
 	</alg>
 
 	<!-- METRICS SECTION -->
@@ -63,7 +63,7 @@
 			<script-name>slack_post.py</script-name>
 			<param name="option">file</param>
 			<param name="channel">la_bot</param>
-			<param name="encrypted_key">/Users/robinburke/Documents/GitHub/librec-auto-demo2020/keys/slack-api.enc</param>
+			<param name="encrypted_key">../keys/slack-api.enc</param>
 			<param name="file">post/viz-bar-NormalizedDCG.jpg</param>
 			<param name="message">NDCG for the experiment</param>
 			<param name="password"/>

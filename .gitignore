@@ -12,3 +12,4 @@ demo03/post/**
 Results/**
 data/split/**
 log/librec.log
+demo03/exp00001/conf/config.xml
