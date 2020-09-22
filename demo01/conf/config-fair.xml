@@ -9,10 +9,10 @@
 	
 	<!-- DATA SECTION -->
 	<data>
-		<data-dir>../data</data-dir>
+		<data-dir>/Users/robinburke/Documents/GitHub/librec-auto-demo2020/data</data-dir>
 		<format>UIR</format>
 		<data-file format="text">ratings.csv</data-file>
-	</data>
+	</data> 
 	
 	<!-- FEATURES SECTION -->
 	<features>
@@ -29,24 +29,19 @@
 	</splitter>
 	
 	<!-- ALGORITHM SECTION -->
-	<!-- Using biased matrix factorization for demonstration purposes. -->
-	<alg ref="alg:biasedmf">
-		<user-reg>0.01</user-reg>
-<!--			<value>0.01</value>
-			<value>0.1</value>
-		</user-reg>-->
-		<iterator-max>25</iterator-max>
-		<num-factors>
+	<!-- Using item knn for demonstration purposes. -->
+	<alg ref="alg:itemknn">
+		<shrinkage>
+			<value>5</value>
 			<value>10</value>
-			<value>50</value>
-		</num-factors>
-	</alg> 
+		</shrinkage>
+	</alg>
 
 	<!-- METRICS SECTION -->
 	<metric>
 		<ranking>true</ranking>
 		<list-size>10</list-size>
-		<class>ndcg,precision,dppf</class>
+		<class>ndcg,precision,sp</class>
 		<protected-feature>old</protected-feature>
 	</metric>
 	
