@@ -44,11 +44,11 @@
 			<param name="max_len">10</param>
 			<param name="lambda">
 				<value>0.2</value>
-				<value>0.8</value>
+				<value>0.0</value>
 			</param>
 			<param name="binary">False</param>
 		</script>
-	</rerank> 
+	</rerank>
 
 	<!-- METRICS SECTION -->
 	<metric>
