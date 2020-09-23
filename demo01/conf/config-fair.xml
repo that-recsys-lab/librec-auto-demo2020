@@ -31,7 +31,7 @@
 	<!-- ALGORITHM SECTION -->
 	<!-- Using biased for demonstration purposes. -->
 	<alg ref="alg:biasedmf">
-		<similarity type="item,itemfeatures">pcc,jaccard</similarity>
+		<similarity type="item">pcc</similarity>
 		<iterator-max>25</iterator-max>
 		<item-reg><value>0.001</value><value>0.01</value><value>0.05</value></item-reg>
 		<num-factors>20</num-factors>
@@ -41,7 +41,7 @@
 	<metric>
 		<ranking>true</ranking>
 		<list-size>10</list-size>
-		<class>ndcg,precision,sp</class>
+		<class>ndcg,precision,icov</class>
 		<protected-feature>new</protected-feature>
 	</metric>
 	
