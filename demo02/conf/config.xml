@@ -43,7 +43,7 @@
 			<script-name>far-rerank.py</script-name>
 			<param name="max_len">10</param>
 			<param name="lambda">
-				<value>0.2</value>
+				<value>0.3</value>
 				<value>0.0</value>
 			</param>
 			<param name="binary">False</param>
@@ -54,7 +54,7 @@
 	<metric>
 		<ranking>true</ranking>
 		<list-size>50</list-size>
-		<class>ndcg,precision,icov</class>
+		<class>ndcg,precision,sp</class>
 		<protected-feature>new</protected-feature>
 	</metric>
 	

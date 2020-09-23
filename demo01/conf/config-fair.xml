@@ -41,7 +41,7 @@
 	<metric>
 		<ranking>true</ranking>
 		<list-size>10</list-size>
-		<class>ndcg,precision,icov</class>
+		<class>ndcg,precision,sp</class>
 		<protected-feature>new</protected-feature>
 	</metric>
 	
