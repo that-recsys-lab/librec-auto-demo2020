@@ -1,7 +1,25 @@
 # librec-auto-demo2020
 Data and configuration files for the [demo at RecSys 2020](https://dl.acm.org/doi/10.1145/3383313.3411525).
 
-## Running an Example
+## Installing librec-auto
+
+You will need to install [librec-auto](https://github.com/that-recsys-lab/librec-auto) in order to run this example.
+
+### Installing via pip
+
+```
+pip install librec-auto
+```
+
+### Installing from source
+
+```
+git clone https://github.com/that-recsys-lab/librec-auto.git
+cd librec-auto
+python setup.py develop
+```
+
+## Running an example
 
 Clone this repository:
 
