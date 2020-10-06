@@ -38,7 +38,7 @@ python -m librec_auto -t librec-auto-demo2020/demo01 run
 The configuration file for the above study is located at:
 
 ```
-librec-auto-demo2020/demo02/config/config.xml
+librec-auto-demo2020/demo01/config/config.xml
 ```
 
 The `-c` command line parameter allows other configuration files to be selected.
