@@ -16,7 +16,7 @@ pip install librec-auto
 ```
 git clone https://github.com/that-recsys-lab/librec-auto.git
 cd librec-auto
-python setup.py develop
+python setup.py install
 ```
 
 ## Running an example
